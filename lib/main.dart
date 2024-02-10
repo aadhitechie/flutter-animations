@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginScreenAnimation(),
+      home:  LoginScreenAnimation(width: MediaQuery.of(context).size.width),
     );
   }
 }
