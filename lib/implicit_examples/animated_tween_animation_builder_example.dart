@@ -14,7 +14,7 @@ class PulsatingCircleAnimation extends StatelessWidget {
         child: TweenAnimationBuilder(
           tween: Tween<double>(begin: 0,end: 200),
           duration: const Duration(milliseconds: 500),      
-          builder: (context, value, child) {
+          builder: (context, value, widget) {
             return Container(
               width: value,
           height: value,
@@ -29,9 +29,11 @@ class PulsatingCircleAnimation extends StatelessWidget {
               ),
             ],
           ),
+          child:widget,
             );
+            
           },
-         
+         child: Text('Adarsh'),
         ),
       ),
     );
