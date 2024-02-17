@@ -39,7 +39,12 @@ late List<Animation<Offset>> animation;
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.forward();
+          if (controller.isCompleted) {
+            controller.reverse();
+          }else{
+controller.forward();
+          }
+          
         },
         child: const Icon(Icons.done),
       ),
