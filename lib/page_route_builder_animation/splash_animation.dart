@@ -30,7 +30,8 @@ class _SplashAnimationState extends State<SplashAnimation>
               
             },
             transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return FadeTransition(opacity: animation,child: child,);
+              final Animation<Offset> tween  = Tween(begin: Offset(0,- 1),end: Offset.zero).animate(CurvedAnimation(parent: animation, curve: Curves.bounceIn));
+              return SlideTransition(position: tween,child: child,);
             },
              ));
 
