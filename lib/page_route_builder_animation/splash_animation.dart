@@ -24,17 +24,12 @@ class _SplashAnimationState extends State<SplashAnimation>
     animation = Tween<double>(begin: 1, end: 10).animate(controller);
     controller.addListener(() {
       if (controller.isCompleted) {
-        Navigator.of(context)
-            .push(MyCustomRoute(route: Destination()));
+        Navigator.of(context).push(MyCustomRoute(route: const Destination()));
 
-
-
-
-           Timer(const Duration(milliseconds: 500), () {
-        controller.reset();
-      });
+        Timer(const Duration(milliseconds: 500), () {
+          controller.reset();
+        });
       }
-   
     });
   }
 
@@ -82,15 +77,22 @@ class Destination extends StatelessWidget {
     );
   }
 }
-class MyCustomRoute extends  PageRouteBuilder{
-  MyCustomRoute({required route}):super(pageBuilder: (context, animation, secondaryAnimation) {
-              return Destination();
-              
-            },
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              final Animation<Offset> tween  = Tween(begin: Offset(0,- 1),end: Offset.zero).animate(CurvedAnimation(parent: animation, curve: Curves.bounceIn));
-              return SlideTransition(position: tween,child: child,);
-            },
+
+class MyCustomRoute extends PageRouteBuilder {
+  final Widget route;
+  MyCustomRoute({required this.route})
+      : super(
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return const Destination();
+          },
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            final Animation<Offset> tween =
+                Tween(begin: const Offset(0, -1), end: Offset.zero).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.bounceIn));
+            return SlideTransition(
+              position: tween,
+              child: child,
             );
-  
+          },
+        );
 }
